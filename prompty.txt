@@ -1,1 +1,11 @@
-Sem patří použité prompty
+AI mi poradila, jak vytvořit mraky bez použití dalšího obrázku díky css:
+
+.cloud {
+    position: absolute;     /* můžu je umístit kdekoliv */
+    background: white;      /* barva mraku */
+    width: 120px;
+    height: 60px;
+    border-radius: 50px;    /* dělá z obdélníku "puff" */
+    opacity: 0.75;          /* lehce průhledné */
+    filter: blur(2px);      /* jemný efekt obláčku */
+    animation: moveclouds 20s linear infinite; /* mrak se sám pohybuje */
