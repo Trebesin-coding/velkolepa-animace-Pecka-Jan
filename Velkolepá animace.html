@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="cz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Velkolepá animace</title>
+
+    <style>
+	body {
+		background-color:skyblue;
+		overflow: hidden;
+		font-family: sans-serif;
+	}
+
+	/* letadlo */
+	.plane {
+		position: absolute;
+		top: 40vh;
+		left: -150px;
+		width: 150px;
+		animation: fly 10s linear infinite; /* ANIMACE 1*/
+		transition: transform 0.4s ease;  /* TRANSITION */
+		cursor: pointer;
+	}
+
+	.plane:hover {
+		transform: scale(1.15); /* TRANSFORM 1 */
+	}
+
+	/* vrtule */
+	.propeller {
+		position: absolute;
+		width: 40px;
+		left: 115px;
+		top: 55px;
+		animation: propeller-spin 0.3s linear infinite; /* ANIMACE 2 */
+	}
+
+	/* mraky */
+	.cloud {
+		position: absolute;
+		background: white;
+		width: 120px;
+		height: 60px;
+		border-radius: 50px;
+		opacity: 0.75;
+		filter: blur(2px);
+		animation: moveclouds 20s linear infinite;
+	}
+
+	.cloud.c2 { top: 20vh; left: 10vw; animation-duration: 18s;}
+	.cloud.c3 { top: 60vh; left: 30vw; }
+
+	/* ANIMACE LETU */
+	@keyframes fly {
+		0% { transform: translateX(0) rotate(0deg); }    /* TRANSFORM 2 */
+		100% { transform: translateX(120vw) rotate(2deg); }
+	}
+
+	/* ROTACE VRTULE */
+	@keyframes propeller-spin {
+		from { transform: rotate(0deg); }
+		to   { transform: rotate(360deg); }
+	}
+
+	/* POHYB MRAKŮ */
+	@keyframes moveclouds {
+		from { transform: translateX(-200px); }
+		to   { transform: translateX(120vw); }
+	}
+
+</style>
+</head>
+<body>
+
+<div class="cloud c1"></div>
+<div class="cloud c2"></div>
+<div class="cloud c3"></div>
+
+<div class="plane" id="plane">
+	<img src=letadlo.png width="150">
+	<img class="propeller" src=419108.png>
+</div>
+
+<script>
+	let plane = document.getElementById("plane");
+	let flying = true;
+
+	plane.onclick = () => {     // ⭐ INTERAKCE
+		flying = !flying;
+		plane.style.animationPlayState = flying ? "running" : "paused";
+		document.querySelector(".propeller").style.animationPlayState = flying ? "running" : "paused";
+	};
+    
+    
+</script>
+
+</body>
+</html>
